@@ -1,0 +1,134 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+		 
+	<ui:define name="content">		
+
+		  			<h:form id="frm">								  		
+						
+						<p:panel id="panelDataTableClientes" header="ClientesData">
+							<p:growl id="men"/>				
+							<p:dataTable value="#{clientesView.data}" var="clientes"
+								paginator="true" rows="5">
+																										<p:column filterBy="#{clientes.documento}" sortBy="#{clientes.documento}" >
+										 <f:facet name="header">
+										<h:outputText value="documento"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.documento}"/>
+										 </p:column>
+			                    																									
+										<p:column filterBy="#{clientes.apellidos}" sortBy="#{clientes.apellidos}" >
+										 <f:facet name="header">
+										<h:outputText value="Apellidos"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.apellidos}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.ciudad}" sortBy="#{clientes.ciudad}" >
+										 <f:facet name="header">
+										<h:outputText value="Ciudad"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.ciudad}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.direccion}" sortBy="#{clientes.direccion}" >
+										 <f:facet name="header">
+										<h:outputText value="Direccion"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.direccion}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.nombres}" sortBy="#{clientes.nombres}" >
+										 <f:facet name="header">
+										<h:outputText value="Nombres"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.nombres}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.numeroTarjetasAsociadas}" sortBy="#{clientes.numeroTarjetasAsociadas}" >
+										 <f:facet name="header">
+										<h:outputText value="NumeroTarjetasAsociadas"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.numeroTarjetasAsociadas}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.telefono}" sortBy="#{clientes.telefono}" >
+										 <f:facet name="header">
+										<h:outputText value="Telefono"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.telefono}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{clientes.tipoDocumento}" sortBy="#{clientes.tipoDocumento}" >
+										 <f:facet name="header">
+										<h:outputText value="TipoDocumento"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.tipoDocumento}"/>
+										</p:column>   
+			                    			                    
+								<p:column headerText="Options">
+									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+										update=":dialogClientes"
+										actionListener="#{clientesView.action_edit}">
+										<f:attribute name="selectedClientes" value="#{clientes}" />
+									</p:commandButton>
+									<p:commandButton id="btnDelete"									
+										title="Delete" actionListener="#{clientesView.action_delete_datatable}"
+										onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
+										icon="ui-icon-trash" update="@form">
+										<f:attribute name="selectedClientes" value="#{clientes}" />
+									</p:commandButton>
+								</p:column>									                    
+							</p:dataTable>	
+						</p:panel>
+						<p:panel id="panelBoton">
+							<div align="center">
+								<p:commandButton id="btnNew" value="New"
+									action="#{clientesView.action_new()}" update=":dialogClientes" />
+							</div>
+						</p:panel>						
+		   			</h:form>
+					<p:dialog id="dialogClientes" appendTo="@(body)" draggable="true"
+						closable="false" visible="#{clientesView.showDialog}" resizable="false"
+						modal="true" width="500">
+						<h:form id="formDialog">
+							<p:messages id="msg" />
+							<p:panel id="panelClientes" header="Clientes">							
+							    <h:panelGrid columns="2" id="panelGrid" >
+																		 <h:outputText id="msgDocumento" value="Documento"/>
+									 <p:inputText id="txtDocumento" binding="#{clientesView.txtDocumento}">
+									 <p:ajax update=":dialogClientes" listener="#{clientesView.listener_txtId}"/>
+									 </p:inputText>	
+																											
+																		<h:outputText id="msgApellidos" value=" Apellidos"/>
+									<p:inputText id="txtApellidos" disabled="true" binding="#{clientesView.txtApellidos}"/>
+																		<h:outputText id="msgCiudad" value=" Ciudad"/>
+									<p:inputText id="txtCiudad" disabled="true" binding="#{clientesView.txtCiudad}"/>
+																		<h:outputText id="msgDireccion" value=" Direccion"/>
+									<p:inputText id="txtDireccion" disabled="true" binding="#{clientesView.txtDireccion}"/>
+																		<h:outputText id="msgNombres" value=" Nombres"/>
+									<p:inputText id="txtNombres" disabled="true" binding="#{clientesView.txtNombres}"/>
+																		<h:outputText id="msgNumeroTarjetasAsociadas" value=" NumeroTarjetasAsociadas"/>
+									<p:inputText id="txtNumeroTarjetasAsociadas" disabled="true" binding="#{clientesView.txtNumeroTarjetasAsociadas}"/>
+																		<h:outputText id="msgTelefono" value=" Telefono"/>
+									<p:inputText id="txtTelefono" disabled="true" binding="#{clientesView.txtTelefono}"/>
+																		<h:outputText id="msgTipoDocumento" value=" TipoDocumento"/>
+									<p:inputText id="txtTipoDocumento" disabled="true" binding="#{clientesView.txtTipoDocumento}"/>
+																		
+																    </h:panelGrid>
+							</p:panel>						   
+							<p:panel id="panelBotones">
+								<div align="center">					
+									<p:commandButton id="btnSave" binding="#{clientesView.btnSave}" value="Save" action="#{clientesView.action_save()}" update=":dialogClientes :frm:panelDataTableClientes" />
+									<p:commandButton id="btnClear" value="Clear" action="#{clientesView.action_clear()}" update=":dialogClientes" />
+									<p:commandButton id="btnExit" value="Exit" action="#{clientesView.action_closeDialog()}" update=":dialogClientes" />
+								</div>
+				</p:panel>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+

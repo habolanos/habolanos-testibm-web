@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+		 
+	<ui:define name="content">		
+
+		  			<h:form id="frm">								  		
+						
+						<p:panel id="panelDataTableAsesores" header="AsesoresData">
+							<p:growl id="men"/>				
+							<p:dataTable value="#{asesoresView.data}" var="asesores"
+								paginator="true" rows="5">
+																										<p:column filterBy="#{asesores.idAsesor}" sortBy="#{asesores.idAsesor}" >
+										 <f:facet name="header">
+										<h:outputText value="idAsesor"/>
+										</f:facet>
+										 <h:outputText value="#{asesores.idAsesor}"/>
+										 </p:column>
+			                    																									
+										<p:column filterBy="#{asesores.apellidos}" sortBy="#{asesores.apellidos}" >
+										 <f:facet name="header">
+										<h:outputText value="Apellidos"/>
+										</f:facet>
+										 <h:outputText value="#{asesores.apellidos}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{asesores.especialidad}" sortBy="#{asesores.especialidad}" >
+										 <f:facet name="header">
+										<h:outputText value="Especialidad"/>
+										</f:facet>
+										 <h:outputText value="#{asesores.especialidad}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{asesores.nombres}" sortBy="#{asesores.nombres}" >
+										 <f:facet name="header">
+										<h:outputText value="Nombres"/>
+										</f:facet>
+										 <h:outputText value="#{asesores.nombres}"/>
+										</p:column>   
+			                    			                    
+								<p:column headerText="Options">
+									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+										update=":dialogAsesores"
+										actionListener="#{asesoresView.action_edit}">
+										<f:attribute name="selectedAsesores" value="#{asesores}" />
+									</p:commandButton>
+									<p:commandButton id="btnDelete"									
+										title="Delete" actionListener="#{asesoresView.action_delete_datatable}"
+										onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
+										icon="ui-icon-trash" update="@form">
+										<f:attribute name="selectedAsesores" value="#{asesores}" />
+									</p:commandButton>
+								</p:column>									                    
+							</p:dataTable>	
+						</p:panel>
+						<p:panel id="panelBoton">
+							<div align="center">
+								<p:commandButton id="btnNew" value="New"
+									action="#{asesoresView.action_new()}" update=":dialogAsesores" />
+							</div>
+						</p:panel>						
+		   			</h:form>
+					<p:dialog id="dialogAsesores" appendTo="@(body)" draggable="true"
+						closable="false" visible="#{asesoresView.showDialog}" resizable="false"
+						modal="true" width="500">
+						<h:form id="formDialog">
+							<p:messages id="msg" />
+							<p:panel id="panelAsesores" header="Asesores">							
+							    <h:panelGrid columns="2" id="panelGrid" >
+																		 <h:outputText id="msgIdAsesor" value="IdAsesor"/>
+									 <p:inputText id="txtIdAsesor" binding="#{asesoresView.txtIdAsesor}">
+									 <p:ajax update=":dialogAsesores" listener="#{asesoresView.listener_txtId}"/>
+									 </p:inputText>	
+																											
+																		<h:outputText id="msgApellidos" value=" Apellidos"/>
+									<p:inputText id="txtApellidos" disabled="true" binding="#{asesoresView.txtApellidos}"/>
+																		<h:outputText id="msgEspecialidad" value=" Especialidad"/>
+									<p:inputText id="txtEspecialidad" disabled="true" binding="#{asesoresView.txtEspecialidad}"/>
+																		<h:outputText id="msgNombres" value=" Nombres"/>
+									<p:inputText id="txtNombres" disabled="true" binding="#{asesoresView.txtNombres}"/>
+																		
+																    </h:panelGrid>
+							</p:panel>						   
+							<p:panel id="panelBotones">
+								<div align="center">					
+									<p:commandButton id="btnSave" binding="#{asesoresView.btnSave}" value="Save" action="#{asesoresView.action_save()}" update=":dialogAsesores :frm:panelDataTableAsesores" />
+									<p:commandButton id="btnClear" value="Clear" action="#{asesoresView.action_clear()}" update=":dialogAsesores" />
+									<p:commandButton id="btnExit" value="Exit" action="#{asesoresView.action_closeDialog()}" update=":dialogAsesores" />
+								</div>
+				</p:panel>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+

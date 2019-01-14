@@ -1,0 +1,203 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+		 
+	<ui:define name="content">		
+
+		  			<h:form id="frm">								  		
+						
+						<p:panel id="panelDataTableTarjetasCredito" header="TarjetasCreditoData">
+							<p:growl id="men"/>				
+							<p:dataTable value="#{tarjetasCreditoView.data}" var="tarjetasCredito"
+								paginator="true" rows="5">
+																										<p:column filterBy="#{tarjetasCredito.idTarjeta}" sortBy="#{tarjetasCredito.idTarjeta}" >
+										 <f:facet name="header">
+										<h:outputText value="idTarjeta"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.idTarjeta}"/>
+										 </p:column>
+			                    																									
+										<p:column filterBy="#{tarjetasCredito.ccv}" sortBy="#{tarjetasCredito.ccv}" >
+										 <f:facet name="header">
+										<h:outputText value="Ccv"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.ccv}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.estado}" sortBy="#{tarjetasCredito.estado}" >
+										 <f:facet name="header">
+										<h:outputText value="Estado"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.estado}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.fechaDesde}" sortBy="#{tarjetasCredito.fechaDesde}" >
+										 <f:facet name="header">
+										<h:outputText value="FechaDesde"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.fechaDesde}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.fechaHasta}" sortBy="#{tarjetasCredito.fechaHasta}" >
+										 <f:facet name="header">
+										<h:outputText value="FechaHasta"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.fechaHasta}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.franquicia}" sortBy="#{tarjetasCredito.franquicia}" >
+										 <f:facet name="header">
+										<h:outputText value="Franquicia"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.franquicia}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.montoAvances}" sortBy="#{tarjetasCredito.montoAvances}" >
+										 <f:facet name="header">
+										<h:outputText value="MontoAvances"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.montoAvances}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.montoCredito}" sortBy="#{tarjetasCredito.montoCredito}" >
+										 <f:facet name="header">
+										<h:outputText value="MontoCredito"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.montoCredito}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.numero}" sortBy="#{tarjetasCredito.numero}" >
+										 <f:facet name="header">
+										<h:outputText value="Numero"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.numero}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.numero01}" sortBy="#{tarjetasCredito.numero01}" >
+										 <f:facet name="header">
+										<h:outputText value="Numero01"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.numero01}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.numero02}" sortBy="#{tarjetasCredito.numero02}" >
+										 <f:facet name="header">
+										<h:outputText value="Numero02"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.numero02}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.numero03}" sortBy="#{tarjetasCredito.numero03}" >
+										 <f:facet name="header">
+										<h:outputText value="Numero03"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.numero03}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.numero04}" sortBy="#{tarjetasCredito.numero04}" >
+										 <f:facet name="header">
+										<h:outputText value="Numero04"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.numero04}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.idAsesor_Asesores}" sortBy="#{tarjetasCredito.idAsesor_Asesores}" >
+										 <f:facet name="header">
+										<h:outputText value="IdAsesor_Asesores"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.idAsesor_Asesores}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{tarjetasCredito.documento_Clientes}" sortBy="#{tarjetasCredito.documento_Clientes}" >
+										 <f:facet name="header">
+										<h:outputText value="Documento_Clientes"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.documento_Clientes}"/>
+										</p:column>   
+			                    			                    
+								<p:column headerText="Options">
+									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+										update=":dialogTarjetasCredito"
+										actionListener="#{tarjetasCreditoView.action_edit}">
+										<f:attribute name="selectedTarjetasCredito" value="#{tarjetasCredito}" />
+									</p:commandButton>
+									<p:commandButton id="btnDelete"									
+										title="Delete" actionListener="#{tarjetasCreditoView.action_delete_datatable}"
+										onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
+										icon="ui-icon-trash" update="@form">
+										<f:attribute name="selectedTarjetasCredito" value="#{tarjetasCredito}" />
+									</p:commandButton>
+								</p:column>									                    
+							</p:dataTable>	
+						</p:panel>
+						<p:panel id="panelBoton">
+							<div align="center">
+								<p:commandButton id="btnNew" value="New"
+									action="#{tarjetasCreditoView.action_new()}" update=":dialogTarjetasCredito" />
+							</div>
+						</p:panel>						
+		   			</h:form>
+					<p:dialog id="dialogTarjetasCredito" appendTo="@(body)" draggable="true"
+						closable="false" visible="#{tarjetasCreditoView.showDialog}" resizable="false"
+						modal="true" width="500">
+						<h:form id="formDialog">
+							<p:messages id="msg" />
+							<p:panel id="panelTarjetasCredito" header="TarjetasCredito">							
+							    <h:panelGrid columns="2" id="panelGrid" >
+																		 <h:outputText id="msgIdTarjeta" value="IdTarjeta"/>
+									 <p:inputText id="txtIdTarjeta" binding="#{tarjetasCreditoView.txtIdTarjeta}">
+									 <p:ajax update=":dialogTarjetasCredito" listener="#{tarjetasCreditoView.listener_txtId}"/>
+									 </p:inputText>	
+																											
+																		<h:outputText id="msgCcv" value=" Ccv"/>
+									<p:inputText id="txtCcv" disabled="true" binding="#{tarjetasCreditoView.txtCcv}"/>
+																		<h:outputText id="msgEstado" value=" Estado"/>
+									<p:inputText id="txtEstado" disabled="true" binding="#{tarjetasCreditoView.txtEstado}"/>
+																		<h:outputText id="msgFranquicia" value=" Franquicia"/>
+									<p:inputText id="txtFranquicia" disabled="true" binding="#{tarjetasCreditoView.txtFranquicia}"/>
+																		<h:outputText id="msgMontoAvances" value=" MontoAvances"/>
+									<p:inputText id="txtMontoAvances" disabled="true" binding="#{tarjetasCreditoView.txtMontoAvances}"/>
+																		<h:outputText id="msgMontoCredito" value=" MontoCredito"/>
+									<p:inputText id="txtMontoCredito" disabled="true" binding="#{tarjetasCreditoView.txtMontoCredito}"/>
+																		<h:outputText id="msgNumero" value=" Numero"/>
+									<p:inputText id="txtNumero" disabled="true" binding="#{tarjetasCreditoView.txtNumero}"/>
+																		<h:outputText id="msgNumero01" value=" Numero01"/>
+									<p:inputText id="txtNumero01" disabled="true" binding="#{tarjetasCreditoView.txtNumero01}"/>
+																		<h:outputText id="msgNumero02" value=" Numero02"/>
+									<p:inputText id="txtNumero02" disabled="true" binding="#{tarjetasCreditoView.txtNumero02}"/>
+																		<h:outputText id="msgNumero03" value=" Numero03"/>
+									<p:inputText id="txtNumero03" disabled="true" binding="#{tarjetasCreditoView.txtNumero03}"/>
+																		<h:outputText id="msgNumero04" value=" Numero04"/>
+									<p:inputText id="txtNumero04" disabled="true" binding="#{tarjetasCreditoView.txtNumero04}"/>
+																		<h:outputText id="msgIdAsesor_Asesores" value=" IdAsesor_Asesores"/>
+									<p:inputText id="txtIdAsesor_Asesores" disabled="true" binding="#{tarjetasCreditoView.txtIdAsesor_Asesores}"/>
+																		<h:outputText id="msgDocumento_Clientes" value=" Documento_Clientes"/>
+									<p:inputText id="txtDocumento_Clientes" disabled="true" binding="#{tarjetasCreditoView.txtDocumento_Clientes}"/>
+																		
+																													<h:outputText id="msgFechaDesde" value=" FechaDesde"/>
+																				<p:calendar showOn="button" navigator="true" locale="en" 
+										binding="#{tarjetasCreditoView.txtFechaDesde}" >
+										<p:ajax event="dateSelect" listener="#{tarjetasCreditoView.listener_txtFechaDesde}"  />
+										</p:calendar>
+																				<h:outputText id="msgFechaHasta" value=" FechaHasta"/>
+																				<p:calendar showOn="button" navigator="true" locale="en" 
+										binding="#{tarjetasCreditoView.txtFechaHasta}" >
+										<p:ajax event="dateSelect" listener="#{tarjetasCreditoView.listener_txtFechaHasta}"  />
+										</p:calendar>
+																										    </h:panelGrid>
+							</p:panel>						   
+							<p:panel id="panelBotones">
+								<div align="center">					
+									<p:commandButton id="btnSave" binding="#{tarjetasCreditoView.btnSave}" value="Save" action="#{tarjetasCreditoView.action_save()}" update=":dialogTarjetasCredito :frm:panelDataTableTarjetasCredito" />
+									<p:commandButton id="btnClear" value="Clear" action="#{tarjetasCreditoView.action_clear()}" update=":dialogTarjetasCredito" />
+									<p:commandButton id="btnExit" value="Exit" action="#{tarjetasCreditoView.action_closeDialog()}" update=":dialogTarjetasCredito" />
+								</div>
+				</p:panel>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+		 
+	<ui:define name="content">	
+			<h:form id="formDialog">
+				<p:messages id="msg" />
+				<p:growl id="men"/>
+					<p:panel id="panelTarjetasCredito" header="TarjetasCredito">							
+						<h:panelGrid columns="2" id="panelGrid" >
+												 	<h:outputText id="msgIdTarjeta" value="IdTarjeta"/>
+						 	<p:inputText id="txtIdTarjeta" binding="#{tarjetasCreditoView.txtIdTarjeta}">
+						 		<p:ajax update="panelTarjetasCredito,msg,panelBotones" listener="#{tarjetasCreditoView.listener_txtId}"/>
+						 	</p:inputText>	
+																		
+													<h:outputText id="msgCcv" value=" Ccv"/>
+							<p:inputText id="txtCcv" disabled="true" binding="#{tarjetasCreditoView.txtCcv}"/>
+													<h:outputText id="msgEstado" value=" Estado"/>
+							<p:inputText id="txtEstado" disabled="true" binding="#{tarjetasCreditoView.txtEstado}"/>
+													<h:outputText id="msgFranquicia" value=" Franquicia"/>
+							<p:inputText id="txtFranquicia" disabled="true" binding="#{tarjetasCreditoView.txtFranquicia}"/>
+													<h:outputText id="msgMontoAvances" value=" MontoAvances"/>
+							<p:inputText id="txtMontoAvances" disabled="true" binding="#{tarjetasCreditoView.txtMontoAvances}"/>
+													<h:outputText id="msgMontoCredito" value=" MontoCredito"/>
+							<p:inputText id="txtMontoCredito" disabled="true" binding="#{tarjetasCreditoView.txtMontoCredito}"/>
+													<h:outputText id="msgNumero" value=" Numero"/>
+							<p:inputText id="txtNumero" disabled="true" binding="#{tarjetasCreditoView.txtNumero}"/>
+													<h:outputText id="msgNumero01" value=" Numero01"/>
+							<p:inputText id="txtNumero01" disabled="true" binding="#{tarjetasCreditoView.txtNumero01}"/>
+													<h:outputText id="msgNumero02" value=" Numero02"/>
+							<p:inputText id="txtNumero02" disabled="true" binding="#{tarjetasCreditoView.txtNumero02}"/>
+													<h:outputText id="msgNumero03" value=" Numero03"/>
+							<p:inputText id="txtNumero03" disabled="true" binding="#{tarjetasCreditoView.txtNumero03}"/>
+													<h:outputText id="msgNumero04" value=" Numero04"/>
+							<p:inputText id="txtNumero04" disabled="true" binding="#{tarjetasCreditoView.txtNumero04}"/>
+													<h:outputText id="msgIdAsesor_Asesores" value=" IdAsesor_Asesores"/>
+							<p:inputText id="txtIdAsesor_Asesores" disabled="true" binding="#{tarjetasCreditoView.txtIdAsesor_Asesores}"/>
+													<h:outputText id="msgDocumento_Clientes" value=" Documento_Clientes"/>
+							<p:inputText id="txtDocumento_Clientes" disabled="true" binding="#{tarjetasCreditoView.txtDocumento_Clientes}"/>
+												
+																				<h:outputText id="msgFechaDesde" value=" FechaDesde"/>
+														<p:calendar showOn="button" navigator="true" locale="en" 
+							binding="#{tarjetasCreditoView.txtFechaDesde}" >
+								<p:ajax event="dateSelect" listener="#{tarjetasCreditoView.listener_txtFechaDesde}" />
+							</p:calendar>
+														<h:outputText id="msgFechaHasta" value=" FechaHasta"/>
+														<p:calendar showOn="button" navigator="true" locale="en" 
+							binding="#{tarjetasCreditoView.txtFechaHasta}" >
+								<p:ajax event="dateSelect" listener="#{tarjetasCreditoView.listener_txtFechaHasta}" />
+							</p:calendar>
+																	   </h:panelGrid>
+				</p:panel>
+	   			<p:panel id="panelBotones">
+					<div align="center">					
+						<p:commandButton id="btnSave" binding="#{tarjetasCreditoView.btnSave}" disabled="true" value="Save" action="#{tarjetasCreditoView.action_save()}" update="panelTarjetasCredito,msg,panelBotones" />
+						<p:commandButton id="btnDelete" binding="#{tarjetasCreditoView.btnDelete}" disabled="true" value="Delete" action="#{tarjetasCreditoView.action_delete_master()}" onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}" update="panelTarjetasCredito,msg,panelBotones" />
+						<p:commandButton id="btnClear" value="Clear" action="#{tarjetasCreditoView.action_clear()}" update="panelTarjetasCredito,msg,panelBotones" />
+					</div>
+				</p:panel>			
+			</h:form>
+  </ui:define>
+</ui:composition>

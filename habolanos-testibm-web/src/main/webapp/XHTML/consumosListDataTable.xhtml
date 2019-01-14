@@ -1,0 +1,122 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+		 
+	<ui:define name="content">		
+
+		  			<h:form id="frm">								  		
+						
+						<p:panel id="panelDataTableConsumos" header="ConsumosData">
+							<p:growl id="men"/>				
+							<p:dataTable value="#{consumosView.data}" var="consumos"
+								paginator="true" rows="5">
+																										<p:column filterBy="#{consumos.idConsumo}" sortBy="#{consumos.idConsumo}" >
+										 <f:facet name="header">
+										<h:outputText value="idConsumo"/>
+										</f:facet>
+										 <h:outputText value="#{consumos.idConsumo}"/>
+										 </p:column>
+			                    																									
+										<p:column filterBy="#{consumos.descripcion}" sortBy="#{consumos.descripcion}" >
+										 <f:facet name="header">
+										<h:outputText value="Descripcion"/>
+										</f:facet>
+										 <h:outputText value="#{consumos.descripcion}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{consumos.fecha}" sortBy="#{consumos.fecha}" >
+										 <f:facet name="header">
+										<h:outputText value="Fecha"/>
+										</f:facet>
+										 <h:outputText value="#{consumos.fecha}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{consumos.fechaHoraRegistro}" sortBy="#{consumos.fechaHoraRegistro}" >
+										 <f:facet name="header">
+										<h:outputText value="FechaHoraRegistro"/>
+										</f:facet>
+										 <h:outputText value="#{consumos.fechaHoraRegistro}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{consumos.monto}" sortBy="#{consumos.monto}" >
+										 <f:facet name="header">
+										<h:outputText value="Monto"/>
+										</f:facet>
+										 <h:outputText value="#{consumos.monto}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{consumos.idTarjeta_TarjetasCredito}" sortBy="#{consumos.idTarjeta_TarjetasCredito}" >
+										 <f:facet name="header">
+										<h:outputText value="IdTarjeta_TarjetasCredito"/>
+										</f:facet>
+										 <h:outputText value="#{consumos.idTarjeta_TarjetasCredito}"/>
+										</p:column>   
+			                    			                    
+								<p:column headerText="Options">
+									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+										update=":dialogConsumos"
+										actionListener="#{consumosView.action_edit}">
+										<f:attribute name="selectedConsumos" value="#{consumos}" />
+									</p:commandButton>
+									<p:commandButton id="btnDelete"									
+										title="Delete" actionListener="#{consumosView.action_delete_datatable}"
+										onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
+										icon="ui-icon-trash" update="@form">
+										<f:attribute name="selectedConsumos" value="#{consumos}" />
+									</p:commandButton>
+								</p:column>									                    
+							</p:dataTable>	
+						</p:panel>
+						<p:panel id="panelBoton">
+							<div align="center">
+								<p:commandButton id="btnNew" value="New"
+									action="#{consumosView.action_new()}" update=":dialogConsumos" />
+							</div>
+						</p:panel>						
+		   			</h:form>
+					<p:dialog id="dialogConsumos" appendTo="@(body)" draggable="true"
+						closable="false" visible="#{consumosView.showDialog}" resizable="false"
+						modal="true" width="500">
+						<h:form id="formDialog">
+							<p:messages id="msg" />
+							<p:panel id="panelConsumos" header="Consumos">							
+							    <h:panelGrid columns="2" id="panelGrid" >
+																		 <h:outputText id="msgIdConsumo" value="IdConsumo"/>
+									 <p:inputText id="txtIdConsumo" binding="#{consumosView.txtIdConsumo}">
+									 <p:ajax update=":dialogConsumos" listener="#{consumosView.listener_txtId}"/>
+									 </p:inputText>	
+																											
+																		<h:outputText id="msgDescripcion" value=" Descripcion"/>
+									<p:inputText id="txtDescripcion" disabled="true" binding="#{consumosView.txtDescripcion}"/>
+																		<h:outputText id="msgMonto" value=" Monto"/>
+									<p:inputText id="txtMonto" disabled="true" binding="#{consumosView.txtMonto}"/>
+																		<h:outputText id="msgIdTarjeta_TarjetasCredito" value=" IdTarjeta_TarjetasCredito"/>
+									<p:inputText id="txtIdTarjeta_TarjetasCredito" disabled="true" binding="#{consumosView.txtIdTarjeta_TarjetasCredito}"/>
+																		
+																													<h:outputText id="msgFecha" value=" Fecha"/>
+																				<p:calendar showOn="button" navigator="true" locale="en" 
+										binding="#{consumosView.txtFecha}" >
+										<p:ajax event="dateSelect" listener="#{consumosView.listener_txtFecha}"  />
+										</p:calendar>
+																				<h:outputText id="msgFechaHoraRegistro" value=" FechaHoraRegistro"/>
+																				<p:calendar showOn="button" navigator="true" locale="en" 
+										binding="#{consumosView.txtFechaHoraRegistro}" >
+										<p:ajax event="dateSelect" listener="#{consumosView.listener_txtFechaHoraRegistro}"  />
+										</p:calendar>
+																										    </h:panelGrid>
+							</p:panel>						   
+							<p:panel id="panelBotones">
+								<div align="center">					
+									<p:commandButton id="btnSave" binding="#{consumosView.btnSave}" value="Save" action="#{consumosView.action_save()}" update=":dialogConsumos :frm:panelDataTableConsumos" />
+									<p:commandButton id="btnClear" value="Clear" action="#{consumosView.action_clear()}" update=":dialogConsumos" />
+									<p:commandButton id="btnExit" value="Exit" action="#{consumosView.action_closeDialog()}" update=":dialogConsumos" />
+								</div>
+				</p:panel>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+

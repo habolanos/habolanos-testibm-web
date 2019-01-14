@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+		 
+	<ui:define name="content">	
+			<h:form id="formDialog">
+				<p:messages id="msg" />
+				<p:growl id="men"/>
+					<p:panel id="panelClientes" header="Clientes">							
+						<h:panelGrid columns="2" id="panelGrid" >
+												 	<h:outputText id="msgDocumento" value="Documento"/>
+						 	<p:inputText id="txtDocumento" binding="#{clientesView.txtDocumento}">
+						 		<p:ajax update="panelClientes,msg,panelBotones" listener="#{clientesView.listener_txtId}"/>
+						 	</p:inputText>	
+																		
+													<h:outputText id="msgApellidos" value=" Apellidos"/>
+							<p:inputText id="txtApellidos" disabled="true" binding="#{clientesView.txtApellidos}"/>
+													<h:outputText id="msgCiudad" value=" Ciudad"/>
+							<p:inputText id="txtCiudad" disabled="true" binding="#{clientesView.txtCiudad}"/>
+													<h:outputText id="msgDireccion" value=" Direccion"/>
+							<p:inputText id="txtDireccion" disabled="true" binding="#{clientesView.txtDireccion}"/>
+													<h:outputText id="msgNombres" value=" Nombres"/>
+							<p:inputText id="txtNombres" disabled="true" binding="#{clientesView.txtNombres}"/>
+													<h:outputText id="msgNumeroTarjetasAsociadas" value=" NumeroTarjetasAsociadas"/>
+							<p:inputText id="txtNumeroTarjetasAsociadas" disabled="true" binding="#{clientesView.txtNumeroTarjetasAsociadas}"/>
+													<h:outputText id="msgTelefono" value=" Telefono"/>
+							<p:inputText id="txtTelefono" disabled="true" binding="#{clientesView.txtTelefono}"/>
+													<h:outputText id="msgTipoDocumento" value=" TipoDocumento"/>
+							<p:inputText id="txtTipoDocumento" disabled="true" binding="#{clientesView.txtTipoDocumento}"/>
+												
+										   </h:panelGrid>
+				</p:panel>
+	   			<p:panel id="panelBotones">
+					<div align="center">					
+						<p:commandButton id="btnSave" binding="#{clientesView.btnSave}" disabled="true" value="Save" action="#{clientesView.action_save()}" update="panelClientes,msg,panelBotones" />
+						<p:commandButton id="btnDelete" binding="#{clientesView.btnDelete}" disabled="true" value="Delete" action="#{clientesView.action_delete_master()}" onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}" update="panelClientes,msg,panelBotones" />
+						<p:commandButton id="btnClear" value="Clear" action="#{clientesView.action_clear()}" update="panelClientes,msg,panelBotones" />
+					</div>
+				</p:panel>			
+			</h:form>
+  </ui:define>
+</ui:composition>
