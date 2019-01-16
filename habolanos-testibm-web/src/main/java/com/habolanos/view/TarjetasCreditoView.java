@@ -10,6 +10,7 @@ import com.habolanos.utility.*;
 
 import org.primefaces.component.calendar.*;
 import org.primefaces.component.commandbutton.CommandButton;
+import org.primefaces.component.inputmask.InputMask;
 import org.primefaces.component.inputtext.InputText;
 
 import org.primefaces.event.RowEditEvent;
@@ -53,7 +54,7 @@ public class TarjetasCreditoView implements Serializable {
     private InputText txtFranquicia;
     private InputText txtMontoAvances;
     private InputText txtMontoCredito;
-    private InputText txtNumero;
+    private InputMask txtNumero;
     private InputText txtNumero01;
     private InputText txtNumero02;
     private InputText txtNumero03;
@@ -500,11 +501,11 @@ public class TarjetasCreditoView implements Serializable {
         this.txtMontoCredito = txtMontoCredito;
     }
 
-    public InputText getTxtNumero() {
+    public InputMask getTxtNumero() {
         return txtNumero;
     }
 
-    public void setTxtNumero(InputText txtNumero) {
+    public void setTxtNumero(InputMask txtNumero) {
         this.txtNumero = txtNumero;
     }
 

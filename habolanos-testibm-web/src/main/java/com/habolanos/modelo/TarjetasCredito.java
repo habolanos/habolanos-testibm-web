@@ -16,8 +16,9 @@ import javax.validation.constraints.*;
 */
 @Entity
 @Table(name = "tarjetas_credito", schema = "public")
+@SequenceGenerator(name="SEQ_TARJETAS")
 public class TarjetasCredito implements java.io.Serializable {
-    @NotNull
+    //@NotNull
     private Long idTarjeta;
     @NotNull
     private Asesores asesores;
@@ -86,6 +87,7 @@ public class TarjetasCredito implements java.io.Serializable {
 
     @Id
     @Column(name = "id_tarjeta", unique = true, nullable = false)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_TARJETAS")
     public Long getIdTarjeta() {
         return this.idTarjeta;
     }

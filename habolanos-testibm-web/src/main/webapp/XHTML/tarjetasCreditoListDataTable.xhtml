@@ -19,6 +19,20 @@
 										</f:facet>
 										 <h:outputText value="#{tarjetasCredito.idTarjeta}"/>
 										 </p:column>
+			                    		
+			                    		<p:column filterBy="#{tarjetasCredito.franquicia}" sortBy="#{tarjetasCredito.franquicia}" >
+										 <f:facet name="header">
+										<h:outputText value="Franquicia"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.franquicia}"/>
+										</p:column> 
+			                    		
+			                    		<p:column filterBy="#{tarjetasCredito.numero}" sortBy="#{tarjetasCredito.numero}" >
+										 <f:facet name="header">
+										<h:outputText value="Numero"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.numero}"/>
+										</p:column>
 			                    																									
 										<p:column filterBy="#{tarjetasCredito.ccv}" sortBy="#{tarjetasCredito.ccv}" >
 										 <f:facet name="header">
@@ -33,6 +47,13 @@
 										</f:facet>
 										 <h:outputText value="#{tarjetasCredito.estado}"/>
 										</p:column>   
+			                    		
+			                    		<p:column filterBy="#{tarjetasCredito.documento_Clientes}" sortBy="#{tarjetasCredito.documento_Clientes}" >
+										 <f:facet name="header">
+										<h:outputText value="Documento_Clientes"/>
+										</f:facet>
+										 <h:outputText value="#{tarjetasCredito.documento_Clientes}"/>
+										</p:column>
 			                    									
 										<p:column filterBy="#{tarjetasCredito.fechaDesde}" sortBy="#{tarjetasCredito.fechaDesde}" >
 										 <f:facet name="header">
@@ -48,12 +69,7 @@
 										 <h:outputText value="#{tarjetasCredito.fechaHasta}"/>
 										</p:column>   
 			                    									
-										<p:column filterBy="#{tarjetasCredito.franquicia}" sortBy="#{tarjetasCredito.franquicia}" >
-										 <f:facet name="header">
-										<h:outputText value="Franquicia"/>
-										</f:facet>
-										 <h:outputText value="#{tarjetasCredito.franquicia}"/>
-										</p:column>   
+										  
 			                    									
 										<p:column filterBy="#{tarjetasCredito.montoAvances}" sortBy="#{tarjetasCredito.montoAvances}" >
 										 <f:facet name="header">
@@ -69,12 +85,7 @@
 										 <h:outputText value="#{tarjetasCredito.montoCredito}"/>
 										</p:column>   
 			                    									
-										<p:column filterBy="#{tarjetasCredito.numero}" sortBy="#{tarjetasCredito.numero}" >
-										 <f:facet name="header">
-										<h:outputText value="Numero"/>
-										</f:facet>
-										 <h:outputText value="#{tarjetasCredito.numero}"/>
-										</p:column>   
+										   
 			                    									
 										<p:column filterBy="#{tarjetasCredito.numero01}" sortBy="#{tarjetasCredito.numero01}" >
 										 <f:facet name="header">
@@ -111,12 +122,7 @@
 										 <h:outputText value="#{tarjetasCredito.idAsesor_Asesores}"/>
 										</p:column>   
 			                    									
-										<p:column filterBy="#{tarjetasCredito.documento_Clientes}" sortBy="#{tarjetasCredito.documento_Clientes}" >
-										 <f:facet name="header">
-										<h:outputText value="Documento_Clientes"/>
-										</f:facet>
-										 <h:outputText value="#{tarjetasCredito.documento_Clientes}"/>
-										</p:column>   
+										   
 			                    			                    
 								<p:column headerText="Options">
 									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
@@ -151,19 +157,21 @@
 									 <p:inputText id="txtIdTarjeta" binding="#{tarjetasCreditoView.txtIdTarjeta}">
 									 <p:ajax update=":dialogTarjetasCredito" listener="#{tarjetasCreditoView.listener_txtId}"/>
 									 </p:inputText>	
-																											
+																		<h:outputText id="msgFranquicia" value=" Franquicia"/>
+									<p:inputText id="txtFranquicia" disabled="true" binding="#{tarjetasCreditoView.txtFranquicia}"/>
+																		<h:outputText id="msgNumero" value=" Numero"/>
+									<p:inputMask id="txtNumero" disabled="true" binding="#{tarjetasCreditoView.txtNumero}" mask="9999 9999 9999 9999"/>									
 																		<h:outputText id="msgCcv" value=" Ccv"/>
 									<p:inputText id="txtCcv" disabled="true" binding="#{tarjetasCreditoView.txtCcv}"/>
 																		<h:outputText id="msgEstado" value=" Estado"/>
 									<p:inputText id="txtEstado" disabled="true" binding="#{tarjetasCreditoView.txtEstado}"/>
-																		<h:outputText id="msgFranquicia" value=" Franquicia"/>
-									<p:inputText id="txtFranquicia" disabled="true" binding="#{tarjetasCreditoView.txtFranquicia}"/>
+																		<h:outputText id="msgDocumento_Clientes" value=" Documento_Clientes"/>
+									<p:inputText id="txtDocumento_Clientes" disabled="true" binding="#{tarjetasCreditoView.txtDocumento_Clientes}"/>
 																		<h:outputText id="msgMontoAvances" value=" MontoAvances"/>
 									<p:inputText id="txtMontoAvances" disabled="true" binding="#{tarjetasCreditoView.txtMontoAvances}"/>
 																		<h:outputText id="msgMontoCredito" value=" MontoCredito"/>
 									<p:inputText id="txtMontoCredito" disabled="true" binding="#{tarjetasCreditoView.txtMontoCredito}"/>
-																		<h:outputText id="msgNumero" value=" Numero"/>
-									<p:inputText id="txtNumero" disabled="true" binding="#{tarjetasCreditoView.txtNumero}"/>
+																		
 																		<h:outputText id="msgNumero01" value=" Numero01"/>
 									<p:inputText id="txtNumero01" disabled="true" binding="#{tarjetasCreditoView.txtNumero01}"/>
 																		<h:outputText id="msgNumero02" value=" Numero02"/>
@@ -174,8 +182,7 @@
 									<p:inputText id="txtNumero04" disabled="true" binding="#{tarjetasCreditoView.txtNumero04}"/>
 																		<h:outputText id="msgIdAsesor_Asesores" value=" IdAsesor_Asesores"/>
 									<p:inputText id="txtIdAsesor_Asesores" disabled="true" binding="#{tarjetasCreditoView.txtIdAsesor_Asesores}"/>
-																		<h:outputText id="msgDocumento_Clientes" value=" Documento_Clientes"/>
-									<p:inputText id="txtDocumento_Clientes" disabled="true" binding="#{tarjetasCreditoView.txtDocumento_Clientes}"/>
+																		
 																		
 																													<h:outputText id="msgFechaDesde" value=" FechaDesde"/>
 																				<p:calendar showOn="button" navigator="true" locale="en" 

@@ -19,7 +19,12 @@
 										</f:facet>
 										 <h:outputText value="#{asesores.idAsesor}"/>
 										 </p:column>
-			                    																									
+			                    		<p:column filterBy="#{asesores.nombres}" sortBy="#{asesores.nombres}" >
+										 <f:facet name="header">
+										<h:outputText value="Nombres"/>
+										</f:facet>
+										 <h:outputText value="#{asesores.nombres}"/>
+										</p:column>																							
 										<p:column filterBy="#{asesores.apellidos}" sortBy="#{asesores.apellidos}" >
 										 <f:facet name="header">
 										<h:outputText value="Apellidos"/>
@@ -34,12 +39,7 @@
 										 <h:outputText value="#{asesores.especialidad}"/>
 										</p:column>   
 			                    									
-										<p:column filterBy="#{asesores.nombres}" sortBy="#{asesores.nombres}" >
-										 <f:facet name="header">
-										<h:outputText value="Nombres"/>
-										</f:facet>
-										 <h:outputText value="#{asesores.nombres}"/>
-										</p:column>   
+										   
 			                    			                    
 								<p:column headerText="Options">
 									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
@@ -74,13 +74,13 @@
 									 <p:inputText id="txtIdAsesor" binding="#{asesoresView.txtIdAsesor}">
 									 <p:ajax update=":dialogAsesores" listener="#{asesoresView.listener_txtId}"/>
 									 </p:inputText>	
-																											
+																		<h:outputText id="msgNombres" value=" Nombres"/>
+									<p:inputText id="txtNombres" disabled="true" binding="#{asesoresView.txtNombres}"/>									
 																		<h:outputText id="msgApellidos" value=" Apellidos"/>
 									<p:inputText id="txtApellidos" disabled="true" binding="#{asesoresView.txtApellidos}"/>
 																		<h:outputText id="msgEspecialidad" value=" Especialidad"/>
 									<p:inputText id="txtEspecialidad" disabled="true" binding="#{asesoresView.txtEspecialidad}"/>
-																		<h:outputText id="msgNombres" value=" Nombres"/>
-									<p:inputText id="txtNombres" disabled="true" binding="#{asesoresView.txtNombres}"/>
+																		
 																		
 																    </h:panelGrid>
 							</p:panel>						   

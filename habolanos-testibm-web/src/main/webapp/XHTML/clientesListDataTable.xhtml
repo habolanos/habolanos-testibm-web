@@ -19,7 +19,20 @@
 										</f:facet>
 										 <h:outputText value="#{clientes.documento}"/>
 										 </p:column>
-			                    																									
+			                    		<p:column filterBy="#{clientes.tipoDocumento}" sortBy="#{clientes.tipoDocumento}" >
+										 <f:facet name="header">
+										<h:outputText value="TipoDocumento"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.tipoDocumento}"/>
+										</p:column>	
+																	
+										<p:column filterBy="#{clientes.nombres}" sortBy="#{clientes.nombres}" >
+										 <f:facet name="header">
+										<h:outputText value="Nombres"/>
+										</f:facet>
+										 <h:outputText value="#{clientes.nombres}"/>
+										</p:column> 
+																																
 										<p:column filterBy="#{clientes.apellidos}" sortBy="#{clientes.apellidos}" >
 										 <f:facet name="header">
 										<h:outputText value="Apellidos"/>
@@ -40,34 +53,24 @@
 										</f:facet>
 										 <h:outputText value="#{clientes.direccion}"/>
 										</p:column>   
-			                    									
-										<p:column filterBy="#{clientes.nombres}" sortBy="#{clientes.nombres}" >
-										 <f:facet name="header">
-										<h:outputText value="Nombres"/>
-										</f:facet>
-										 <h:outputText value="#{clientes.nombres}"/>
-										</p:column>   
-			                    									
-										<p:column filterBy="#{clientes.numeroTarjetasAsociadas}" sortBy="#{clientes.numeroTarjetasAsociadas}" >
-										 <f:facet name="header">
-										<h:outputText value="NumeroTarjetasAsociadas"/>
-										</f:facet>
-										 <h:outputText value="#{clientes.numeroTarjetasAsociadas}"/>
-										</p:column>   
+			                    		  
 			                    									
 										<p:column filterBy="#{clientes.telefono}" sortBy="#{clientes.telefono}" >
 										 <f:facet name="header">
 										<h:outputText value="Telefono"/>
 										</f:facet>
 										 <h:outputText value="#{clientes.telefono}"/>
-										</p:column>   
-			                    									
-										<p:column filterBy="#{clientes.tipoDocumento}" sortBy="#{clientes.tipoDocumento}" >
+										</p:column> 
+																	
+										<p:column filterBy="#{clientes.numeroTarjetasAsociadas}" sortBy="#{clientes.numeroTarjetasAsociadas}" >
 										 <f:facet name="header">
-										<h:outputText value="TipoDocumento"/>
+										<h:outputText value="NumeroTarjetasAsociadas"/>
 										</f:facet>
-										 <h:outputText value="#{clientes.tipoDocumento}"/>
+										 <h:outputText value="#{clientes.numeroTarjetasAsociadas}"/>
 										</p:column>   
+			                    		  
+			                    									
+										   
 			                    			                    
 								<p:column headerText="Options">
 									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
@@ -102,21 +105,22 @@
 									 <p:inputText id="txtDocumento" binding="#{clientesView.txtDocumento}">
 									 <p:ajax update=":dialogClientes" listener="#{clientesView.listener_txtId}"/>
 									 </p:inputText>	
-																											
+																		<h:outputText id="msgTipoDocumento" value=" TipoDocumento"/>
+									<p:inputText id="txtTipoDocumento" disabled="true" binding="#{clientesView.txtTipoDocumento}"/>									
+																		<h:outputText id="msgNombres" value=" Nombres"/>
+									<p:inputText id="txtNombres" disabled="true" binding="#{clientesView.txtNombres}"/>
 																		<h:outputText id="msgApellidos" value=" Apellidos"/>
 									<p:inputText id="txtApellidos" disabled="true" binding="#{clientesView.txtApellidos}"/>
 																		<h:outputText id="msgCiudad" value=" Ciudad"/>
 									<p:inputText id="txtCiudad" disabled="true" binding="#{clientesView.txtCiudad}"/>
 																		<h:outputText id="msgDireccion" value=" Direccion"/>
 									<p:inputText id="txtDireccion" disabled="true" binding="#{clientesView.txtDireccion}"/>
-																		<h:outputText id="msgNombres" value=" Nombres"/>
-									<p:inputText id="txtNombres" disabled="true" binding="#{clientesView.txtNombres}"/>
-																		<h:outputText id="msgNumeroTarjetasAsociadas" value=" NumeroTarjetasAsociadas"/>
-									<p:inputText id="txtNumeroTarjetasAsociadas" disabled="true" binding="#{clientesView.txtNumeroTarjetasAsociadas}"/>
 																		<h:outputText id="msgTelefono" value=" Telefono"/>
 									<p:inputText id="txtTelefono" disabled="true" binding="#{clientesView.txtTelefono}"/>
-																		<h:outputText id="msgTipoDocumento" value=" TipoDocumento"/>
-									<p:inputText id="txtTipoDocumento" disabled="true" binding="#{clientesView.txtTipoDocumento}"/>
+																		<h:outputText id="msgNumeroTarjetasAsociadas" value=" NumeroTarjetasAsociadas"/>
+									<p:inputText id="txtNumeroTarjetasAsociadas" disabled="true" binding="#{clientesView.txtNumeroTarjetasAsociadas}"/>
+																		
+																		
 																		
 																    </h:panelGrid>
 							</p:panel>						   
