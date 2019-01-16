@@ -41,22 +41,7 @@ public class TarjetasCredito implements java.io.Serializable {
     private Double montoCredito;
     @NotNull
     private Long numero;
-    @NotNull
-    @NotEmpty
-    @Size(max = 4)
-    private String numero01;
-    @NotNull
-    @NotEmpty
-    @Size(max = 4)
-    private String numero02;
-    @NotNull
-    @NotEmpty
-    @Size(max = 4)
-    private String numero03;
-    @NotNull
-    @NotEmpty
-    @Size(max = 4)
-    private String numero04;
+    
     private Set<Consumos> consumoses = new HashSet<Consumos>(0);
 
     public TarjetasCredito() {
@@ -65,8 +50,7 @@ public class TarjetasCredito implements java.io.Serializable {
     public TarjetasCredito(Long idTarjeta, Asesores asesores, String ccv,
         Clientes clientes, Set<Consumos> consumoses, Long estado,
         Date fechaDesde, Date fechaHasta, String franquicia,
-        Double montoAvances, Double montoCredito, Long numero, String numero01,
-        String numero02, String numero03, String numero04) {
+        Double montoAvances, Double montoCredito, Long numero) {
         this.idTarjeta = idTarjeta;
         this.asesores = asesores;
         this.clientes = clientes;
@@ -78,10 +62,6 @@ public class TarjetasCredito implements java.io.Serializable {
         this.montoAvances = montoAvances;
         this.montoCredito = montoCredito;
         this.numero = numero;
-        this.numero01 = numero01;
-        this.numero02 = numero02;
-        this.numero03 = numero03;
-        this.numero04 = numero04;
         this.consumoses = consumoses;
     }
 
@@ -186,42 +166,6 @@ public class TarjetasCredito implements java.io.Serializable {
 
     public void setNumero(Long numero) {
         this.numero = numero;
-    }
-
-    @Column(name = "numero01", nullable = false)
-    public String getNumero01() {
-        return this.numero01;
-    }
-
-    public void setNumero01(String numero01) {
-        this.numero01 = numero01;
-    }
-
-    @Column(name = "numero02", nullable = false)
-    public String getNumero02() {
-        return this.numero02;
-    }
-
-    public void setNumero02(String numero02) {
-        this.numero02 = numero02;
-    }
-
-    @Column(name = "numero03", nullable = false)
-    public String getNumero03() {
-        return this.numero03;
-    }
-
-    public void setNumero03(String numero03) {
-        this.numero03 = numero03;
-    }
-
-    @Column(name = "numero04", nullable = false)
-    public String getNumero04() {
-        return this.numero04;
-    }
-
-    public void setNumero04(String numero04) {
-        this.numero04 = numero04;
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tarjetasCredito")

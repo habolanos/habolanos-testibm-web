@@ -49,16 +49,13 @@ import javax.faces.event.ActionEvent;
 public class TarjetasCreditoView implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger log = LoggerFactory.getLogger(TarjetasCreditoView.class);
-    private InputText txtCcv;
+    private InputMask txtCcv;
     private InputText txtEstado;
     private InputText txtFranquicia;
     private InputText txtMontoAvances;
     private InputText txtMontoCredito;
     private InputMask txtNumero;
-    private InputText txtNumero01;
-    private InputText txtNumero02;
-    private InputText txtNumero03;
-    private InputText txtNumero04;
+    
     private InputText txtIdAsesor_Asesores;
     private InputText txtDocumento_Clientes;
     private InputText txtIdTarjeta;
@@ -121,25 +118,7 @@ public class TarjetasCreditoView implements Serializable {
             txtNumero.setDisabled(true);
         }
 
-        if (txtNumero01 != null) {
-            txtNumero01.setValue(null);
-            txtNumero01.setDisabled(true);
-        }
-
-        if (txtNumero02 != null) {
-            txtNumero02.setValue(null);
-            txtNumero02.setDisabled(true);
-        }
-
-        if (txtNumero03 != null) {
-            txtNumero03.setValue(null);
-            txtNumero03.setDisabled(true);
-        }
-
-        if (txtNumero04 != null) {
-            txtNumero04.setValue(null);
-            txtNumero04.setDisabled(true);
-        }
+     
 
         if (txtIdAsesor_Asesores != null) {
             txtIdAsesor_Asesores.setValue(null);
@@ -209,10 +188,6 @@ public class TarjetasCreditoView implements Serializable {
             txtMontoAvances.setDisabled(false);
             txtMontoCredito.setDisabled(false);
             txtNumero.setDisabled(false);
-            txtNumero01.setDisabled(false);
-            txtNumero02.setDisabled(false);
-            txtNumero03.setDisabled(false);
-            txtNumero04.setDisabled(false);
             txtIdAsesor_Asesores.setDisabled(false);
             txtDocumento_Clientes.setDisabled(false);
             txtFechaDesde.setDisabled(false);
@@ -236,14 +211,7 @@ public class TarjetasCreditoView implements Serializable {
             txtMontoCredito.setDisabled(false);
             txtNumero.setValue(entity.getNumero());
             txtNumero.setDisabled(false);
-            txtNumero01.setValue(entity.getNumero01());
-            txtNumero01.setDisabled(false);
-            txtNumero02.setValue(entity.getNumero02());
-            txtNumero02.setDisabled(false);
-            txtNumero03.setValue(entity.getNumero03());
-            txtNumero03.setDisabled(false);
-            txtNumero04.setValue(entity.getNumero04());
-            txtNumero04.setDisabled(false);
+            
             txtIdAsesor_Asesores.setValue(entity.getAsesores().getIdAsesor());
             txtIdAsesor_Asesores.setDisabled(false);
             txtDocumento_Clientes.setValue(entity.getClientes().getDocumento());
@@ -278,14 +246,7 @@ public class TarjetasCreditoView implements Serializable {
         txtMontoCredito.setDisabled(false);
         txtNumero.setValue(selectedTarjetasCredito.getNumero());
         txtNumero.setDisabled(false);
-        txtNumero01.setValue(selectedTarjetasCredito.getNumero01());
-        txtNumero01.setDisabled(false);
-        txtNumero02.setValue(selectedTarjetasCredito.getNumero02());
-        txtNumero02.setDisabled(false);
-        txtNumero03.setValue(selectedTarjetasCredito.getNumero03());
-        txtNumero03.setDisabled(false);
-        txtNumero04.setValue(selectedTarjetasCredito.getNumero04());
-        txtNumero04.setDisabled(false);
+        
         txtIdAsesor_Asesores.setValue(selectedTarjetasCredito.getIdAsesor_Asesores());
         txtIdAsesor_Asesores.setDisabled(false);
         txtDocumento_Clientes.setValue(selectedTarjetasCredito.getDocumento_Clientes());
@@ -320,7 +281,7 @@ public class TarjetasCreditoView implements Serializable {
 
             Long idTarjeta = FacesUtils.checkLong(txtIdTarjeta);
 
-            entity.setCcv(FacesUtils.checkString(txtCcv));
+            entity.setCcv(txtCcv.getValue().toString());
             entity.setEstado(FacesUtils.checkLong(txtEstado));
             entity.setFechaDesde(FacesUtils.checkDate(txtFechaDesde));
             entity.setFechaHasta(FacesUtils.checkDate(txtFechaHasta));
@@ -328,11 +289,8 @@ public class TarjetasCreditoView implements Serializable {
             entity.setIdTarjeta(idTarjeta);
             entity.setMontoAvances(FacesUtils.checkDouble(txtMontoAvances));
             entity.setMontoCredito(FacesUtils.checkDouble(txtMontoCredito));
-            entity.setNumero(FacesUtils.checkLong(txtNumero));
-            entity.setNumero01(FacesUtils.checkString(txtNumero01));
-            entity.setNumero02(FacesUtils.checkString(txtNumero02));
-            entity.setNumero03(FacesUtils.checkString(txtNumero03));
-            entity.setNumero04(FacesUtils.checkString(txtNumero04));
+            entity.setNumero(new Long(txtNumero.getValue().toString().replaceAll(" ", "")));
+            
             entity.setAsesores((FacesUtils.checkLong(txtIdAsesor_Asesores) != null)
                 ? businessDelegatorView.getAsesores(FacesUtils.checkLong(
                         txtIdAsesor_Asesores)) : null);
@@ -357,18 +315,15 @@ public class TarjetasCreditoView implements Serializable {
                 entity = businessDelegatorView.getTarjetasCredito(idTarjeta);
             }
 
-            entity.setCcv(FacesUtils.checkString(txtCcv));
+            entity.setCcv(txtCcv.getValue().toString());
             entity.setEstado(FacesUtils.checkLong(txtEstado));
             entity.setFechaDesde(FacesUtils.checkDate(txtFechaDesde));
             entity.setFechaHasta(FacesUtils.checkDate(txtFechaHasta));
             entity.setFranquicia(FacesUtils.checkString(txtFranquicia));
             entity.setMontoAvances(FacesUtils.checkDouble(txtMontoAvances));
             entity.setMontoCredito(FacesUtils.checkDouble(txtMontoCredito));
-            entity.setNumero(FacesUtils.checkLong(txtNumero));
-            entity.setNumero01(FacesUtils.checkString(txtNumero01));
-            entity.setNumero02(FacesUtils.checkString(txtNumero02));
-            entity.setNumero03(FacesUtils.checkString(txtNumero03));
-            entity.setNumero04(FacesUtils.checkString(txtNumero04));
+            entity.setNumero(new Long(txtNumero.getValue().toString()));
+            
             entity.setAsesores((FacesUtils.checkLong(txtIdAsesor_Asesores) != null)
                 ? businessDelegatorView.getAsesores(FacesUtils.checkLong(
                         txtIdAsesor_Asesores)) : null);
@@ -446,10 +401,7 @@ public class TarjetasCreditoView implements Serializable {
             entity.setMontoAvances(FacesUtils.checkDouble(montoAvances));
             entity.setMontoCredito(FacesUtils.checkDouble(montoCredito));
             entity.setNumero(FacesUtils.checkLong(numero));
-            entity.setNumero01(FacesUtils.checkString(numero01));
-            entity.setNumero02(FacesUtils.checkString(numero02));
-            entity.setNumero03(FacesUtils.checkString(numero03));
-            entity.setNumero04(FacesUtils.checkString(numero04));
+            
             businessDelegatorView.updateTarjetasCredito(entity);
             FacesUtils.addInfoMessage(ZMessManager.ENTITY_SUCCESFULLYMODIFIED);
         } catch (Exception e) {
@@ -461,11 +413,11 @@ public class TarjetasCreditoView implements Serializable {
         return "";
     }
 
-    public InputText getTxtCcv() {
+    public InputMask getTxtCcv() {
         return txtCcv;
     }
 
-    public void setTxtCcv(InputText txtCcv) {
+    public void setTxtCcv(InputMask txtCcv) {
         this.txtCcv = txtCcv;
     }
 
@@ -509,37 +461,7 @@ public class TarjetasCreditoView implements Serializable {
         this.txtNumero = txtNumero;
     }
 
-    public InputText getTxtNumero01() {
-        return txtNumero01;
-    }
-
-    public void setTxtNumero01(InputText txtNumero01) {
-        this.txtNumero01 = txtNumero01;
-    }
-
-    public InputText getTxtNumero02() {
-        return txtNumero02;
-    }
-
-    public void setTxtNumero02(InputText txtNumero02) {
-        this.txtNumero02 = txtNumero02;
-    }
-
-    public InputText getTxtNumero03() {
-        return txtNumero03;
-    }
-
-    public void setTxtNumero03(InputText txtNumero03) {
-        this.txtNumero03 = txtNumero03;
-    }
-
-    public InputText getTxtNumero04() {
-        return txtNumero04;
-    }
-
-    public void setTxtNumero04(InputText txtNumero04) {
-        this.txtNumero04 = txtNumero04;
-    }
+    
 
     public InputText getTxtIdAsesor_Asesores() {
         return txtIdAsesor_Asesores;

@@ -67,14 +67,6 @@ public class TarjetasCreditoMapperImpl implements TarjetasCreditoMapper {
                 ? tarjetasCredito.getMontoCredito() : null);
             tarjetasCreditoDTO.setNumero((tarjetasCredito.getNumero() != null)
                 ? tarjetasCredito.getNumero() : null);
-            tarjetasCreditoDTO.setNumero01((tarjetasCredito.getNumero01() != null)
-                ? tarjetasCredito.getNumero01() : null);
-            tarjetasCreditoDTO.setNumero02((tarjetasCredito.getNumero02() != null)
-                ? tarjetasCredito.getNumero02() : null);
-            tarjetasCreditoDTO.setNumero03((tarjetasCredito.getNumero03() != null)
-                ? tarjetasCredito.getNumero03() : null);
-            tarjetasCreditoDTO.setNumero04((tarjetasCredito.getNumero04() != null)
-                ? tarjetasCredito.getNumero04() : null);
             tarjetasCreditoDTO.setIdAsesor_Asesores((tarjetasCredito.getAsesores()
                                                                     .getIdAsesor() != null)
                 ? tarjetasCredito.getAsesores().getIdAsesor() : null);
@@ -109,14 +101,6 @@ public class TarjetasCreditoMapperImpl implements TarjetasCreditoMapper {
                 ? tarjetasCreditoDTO.getMontoCredito() : null);
             tarjetasCredito.setNumero((tarjetasCreditoDTO.getNumero() != null)
                 ? tarjetasCreditoDTO.getNumero() : null);
-            tarjetasCredito.setNumero01((tarjetasCreditoDTO.getNumero01() != null)
-                ? tarjetasCreditoDTO.getNumero01() : null);
-            tarjetasCredito.setNumero02((tarjetasCreditoDTO.getNumero02() != null)
-                ? tarjetasCreditoDTO.getNumero02() : null);
-            tarjetasCredito.setNumero03((tarjetasCreditoDTO.getNumero03() != null)
-                ? tarjetasCreditoDTO.getNumero03() : null);
-            tarjetasCredito.setNumero04((tarjetasCreditoDTO.getNumero04() != null)
-                ? tarjetasCreditoDTO.getNumero04() : null);
 
             Asesores asesores = new Asesores();
 
